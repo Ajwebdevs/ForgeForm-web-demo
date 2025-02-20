@@ -64,12 +64,11 @@ const schema = createSchema<FormData>({
         value === data?.password ? undefined : "Passwords do not match.",
     },
     fullName: {
-      type: "string",
+      type: "alpha",
       required: true,
       trim: true,
       minLength: 2,
       maxLength: 100,
-      format: 'alphaSpace',
       formatErrorMessage: 'Full name should only contain letters and spaces.',
     },
     age: {
@@ -129,7 +128,7 @@ const schema = createSchema<FormData>({
       maxDateErrorMessage: "Birth date cannot be in the future.",
     },
     terms: {
-      type: "checkbox",
+      type: "boolean",
       required: true,
       requiredErrorMessage: "You must agree to the terms and conditions.",
     },
@@ -304,7 +303,7 @@ const App: React.FC = () => {
 
             <div className="field">
               <label htmlFor="website" className="label">
-                Website <span className="field-type">(url, optional)</span>
+                Website <span className="field-type">(url, optional (include https:// using default regex(check documentation)))</span>
               </label>
               <input
                 id="website"
@@ -412,7 +411,7 @@ const App: React.FC = () => {
               </div>
               <div className="nested-field">
                 <label htmlFor="address.zip" className="label">
-                  ZIP Code <span className="field-type">(string, zip regex, required)</span>
+                  ZIP Code <span className="field-type">(string, zip regex, required , 5 Digit (by default) use indianZipCode6Digit	for 6 digit)</span>
                 </label>
                 <input
                   id="address.zip"

@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# ForgeForm
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![screenshot](./public/forgeform.png)
 
-Currently, two official plugins are available:
+**Lightweight, TypeScript-First Form Validation for Modern Web Applications**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ForgeForm is a powerful and intuitive form validation library built with TypeScript for robust web application development. It simplifies form validation with its declarative schema definition, comprehensive validation engine, React hook for easy form state management, and a rich regex builder.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+*   **Intuitive DSL (Domain Specific Language):**
+    *   Define form schemas effortlessly using `createSchema` with a clean, JSON-like syntax.
+    *   Supports a wide range of field types: `string`, `number`, `boolean`, `email`, `url`, and more.
+    *   Handles complex data structures including nested `objects` and `arrays`.
+    *   Offers advanced type support: `union`, `literal`, `tuple`, and `record` types.
 
-- Configure the top-level `parserOptions` property like this:
+*   **Robust Core Validation Engine:**
+    *   **Type-Safe Validation:** Ensures data adheres to the expected types defined in your schema.
+    *   **Built-in Sanitization:** Automatically sanitizes string inputs by trimming whitespace and converting case (lowercase or uppercase) based on your schema configuration.
+    *   **Regex/Format Validation:** Leverages a comprehensive regex builder with over 50 RCN (Reusable, Community-Driven, and Node.js-friendly) compliant regex patterns for robust format validation.
+    *   **Custom Validators:**  Easily extend validation logic with synchronous or asynchronous custom validators to handle complex business rules.
+    *   **Customizable Error Messages:**  Define tailored error messages and error codes for each validation rule, enhancing user feedback and application localization.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+*   **React Hook (`useForm`):**
+    *   Simplifies form state management in React applications.
+    *   Manages form data and validation errors seamlessly.
+    *   Handles nested form fields effortlessly using dot-notation in field names (e.g., `"address.street"`).
+    *   Provides real-time validation feedback to users, improving form usability.
+
+*   **Comprehensive Regex Builder:**
+    *   Includes a vast collection of over 50 pre-built, RCN-compliant regex patterns.
+    *   Covers common data formats like `email`, `phone`, `url`, `uuid`, `zip`, `ip`, `date`, `time`, `creditCard`, `color`, and many more.
+    *   Offers complex validation patterns for scenarios like semantic versioning, social media handles, and various postal code formats.
+    *   Allows for custom regex creation using the `buildRegex` function, providing flexibility for specific validation needs.
+
+*   **Extensibility & Customization:**
+    *   Designed for extensibility, allowing you to easily extend or override built-in validators, sanitizers, and regex patterns to match your application's specific requirements.
+
+## Installation
+
+Install ForgeForm using npm or yarn:
+
+```bash
+npm install forgeform
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+yarn add forgeform
 ```

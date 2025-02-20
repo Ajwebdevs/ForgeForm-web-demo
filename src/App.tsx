@@ -82,14 +82,14 @@ const schema = createSchema<FormData>({
     ageRange: {
       type: "string",
       required: true,
-      customValidator: (value) => {
+      customValidator: (value: string) => {
         if (!value) return "Age range is required.";
         const regex = /^(\d+)-(\d+)$/;
         if (!regex.test(value)) return "Age range must be in the format 'number-number' (e.g., 20-30).";
         const match = value.match(regex);
         if (match) {
-          const minAge = parseInt(match[1], 10);
-          const maxAge = parseInt(match[2], 10);
+          const minAge = Number.parseInt(match[1], 10);
+          const maxAge = Number.parseInt(match[2], 10);
           if (minAge >= maxAge) return "Invalid age range: minimum age must be less than maximum age.";
           if (minAge < 0 || maxAge > 150) return "Age range is out of realistic bounds."; // Example bounds
         }

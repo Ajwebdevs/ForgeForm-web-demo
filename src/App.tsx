@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// demo/src/App.tsx
 import type React from "react";
 import "./App.css"; // Using SCSS now!
 import { createSchema, useForm } from "forgeform";
 import { buildRegex } from "forgeform";
+
 
 interface Address {
   street: string;
@@ -45,8 +45,8 @@ const schema = createSchema<FormData>({
       minLength: 5,
       trim: true,
       lowercase: true,
-      // You can use a custom error message:
-      requiredErrorMessage: "Email is required.",
+      pattern: buildRegex({ type: "email" }).source,
+      patternErrorMessage: "Email is required."
     },
     password: {
       type: "password",
@@ -182,6 +182,10 @@ const App: React.FC = () => {
             <a href="https://github.com/Ajwebdevs/ForgeForm" target="_blank" rel="noopener noreferrer">
               <img src="https://img.shields.io/github/stars/Ajwebdevs/ForgeForm?style=for-the-badge&logo=github" alt="GitHub Repository" />
             </a>
+            <a href="https://www.npmjs.com/package/forgeform" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.shields.io/npm/dt/forgeform?style=for-the-badge" alt="NPM Downloads" />
+            </a>
+            
           </div>
           <p className="intro-text">
             ForgeForm is a lightweight and powerful form validation library for React applications.
